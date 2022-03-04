@@ -13,6 +13,8 @@ while True:
     _,img = video.read()
     image = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
 
+    width = video.get(cv2.CAP_PROP_FRAME_WIDTH)
+
     mask = cv2.inRange(image,lower_blue,upper_blue)
     #mask = cv2.inRange(image,lower_red, upper_red)
 
@@ -22,6 +24,12 @@ while True:
         for i in contours:
             x, y, w, h = cv2.boundingRect(i)
             cv2.rectangle(img, (x,y), (x+w, y+h), (0,0,255),3)
+            if width/2 > x:
+                print("Im on the left of the screen")
+            elif width/2 < x:
+                print("Im on the right of the screen")
+            else:
+                print("Im at the middle")
 
     cv2.imshow('mask',mask)
     cv2.imshow('webcame', img)
