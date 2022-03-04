@@ -6,8 +6,8 @@ video = cv2.VideoCapture(0)
 lower_blue = np.array([100,140,20])
 upper_blue = np.array([130,255,255])
 
-lower_red = np.array([170,160,20])
-upper_red = np.array([180,255,255])
+lower_red = np.array([0,150 ,20])
+upper_red = np.array([15 ,255,255])
 
 while True:
     _,img = video.read()
