@@ -23,19 +23,6 @@ while video.isOpened():
     _,redIMG = video.read()
     image = cv2.cvtColor(blueIMG,cv2.COLOR_BGR2HSV)
 
-    width = video.get(cv2.CAP_PROP_FRAME_WIDTH)
-
-    blueMask = cv2.inRange(image,lower_blue,upper_blue)
-    redMask = cv2.inRange(image,lower_red, upper_red)
-
-    blueContours,_ = cv2.findContours(blueMask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    redContours,_ = cv2.findContours(redMask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
-    #turs it to byte string [can crush the computer] (DO NOT TURN IT ON WITH THE VIDEO!)    
-    #imgBlue_str = cv2.imencode('.jpg' , blueIMG )[1].tostring()
-    #imgRed_str = cv2.imencode('.jpg' , redIMG )[1].tostring()
-    #print(imgBlue_str + "\n" + imgRed_str)
-
     if len(blueContours) != 0 or len(redContours) != 0:
         for i in blueContours:
             x, y, w, h = cv2.boundingRect(i)
