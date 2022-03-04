@@ -28,15 +28,6 @@ while True:
     if len(contours) != 0:
         for i in contours:
             x, y, w, h = cv2.boundingRect(i)
-            cv2.rectangle(img, (x,y), (x+w, y+h), (0,0,255),3)
-            if width/2 - 55 < x and width/2 + 55 > x:
-                print("mid")
-            elif width/2 > x:
-                print("left")
-            else:
-                print("right")
-                
-#the windows that display us the camera view
     cv2.imshow('mask',mask)
     cv2.imshow('webcame', img)
 
