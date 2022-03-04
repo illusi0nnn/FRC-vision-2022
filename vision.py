@@ -24,7 +24,11 @@ while True:
     #mask = cv2.inRange(image,lower_green,upper_green)
     
     contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-
+    
+    #turs it to byte string [can crush the computer] (DO NOT TURN IT ON WITH THE VIDEO!)    
+    img_str = cv2.imencode('.jpg' , img )[1].tostring()
+    print(img_str)
+    
     if len(contours) != 0:
         for i in contours:
             x, y, w, h = cv2.boundingRect(i)
