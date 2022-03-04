@@ -3,8 +3,12 @@ import numpy as np
 import cv2
 
 video = cv2.VideoCapture(0)
-lower_blue = np.array([100,140,20])
+#The spectrum of colors that the camera detects
+lower_blue = np.array([90,140,20])
 upper_blue = np.array([130,255,255])
+
+lower_green = np.array([40 , 100 , 20])
+upper_green = np.array([75 , 250 , 255])
 
 lower_red = np.array([0,150 ,20])
 upper_red = np.array([15 ,255,255])
@@ -17,7 +21,8 @@ while True:
 
     mask = cv2.inRange(image,lower_blue,upper_blue)
     #mask = cv2.inRange(image,lower_red, upper_red)
-
+    #mask = cv2.inRange(image,lower_green,upper_green)
+    
     contours, hierarchy = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     if len(contours) != 0:
@@ -30,7 +35,8 @@ while True:
                 print("left")
             else:
                 print("right")
-
+                
+#the windows that display us the camera view
     cv2.imshow('mask',mask)
     cv2.imshow('webcame', img)
 
