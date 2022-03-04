@@ -24,12 +24,12 @@ while True:
         for i in contours:
             x, y, w, h = cv2.boundingRect(i)
             cv2.rectangle(img, (x,y), (x+w, y+h), (0,0,255),3)
-            if width/2 > x:
-                print("Im on the left of the screen")
-            elif width/2 < x:
-                print("Im on the right of the screen")
+            if width/2 - 55 < x and width/2 + 55 > x:
+                print("mid")
+            elif width/2 > x:
+                print("left")
             else:
-                print("Im at the middle")
+                print("right")
 
     cv2.imshow('mask',mask)
     cv2.imshow('webcame', img)
